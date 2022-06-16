@@ -59,6 +59,7 @@ import os
 for file in os.listdir("."):
     if os.path.isfile(file) and file.endswith(".xls"):
         print(f"{file}:",  os.path.getsize(file)/1000,"kb")
+print("git commit")
 
 
 
