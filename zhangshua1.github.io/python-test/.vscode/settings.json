@@ -1,0 +1,8 @@
+{
+    "editor.fontSize": 24,
+    "editor.fontWeight": "600",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontWeight": "600",
+    "terminal.integrated.fontWeightBold": "600",
+    "terminal.explorerKind": "external"
+}
