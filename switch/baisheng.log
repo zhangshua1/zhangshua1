@@ -1,0 +1,740 @@
+﻿[root@localhost ~]# sshpass -pbaisheng@123 ssh admin@192.168.90.158 'dis cu'
+User Authentication
+
+*************************************************************************
+*         Copyright (C) 2014-2019 Huawei Technologies Co., Ltd.         *
+*                           All rights reserved.                        *
+*               Without the owner's prior written consent,              *
+*        no decompiling or reverse-engineering shall be allowed.        *
+*************************************************************************
+
+
+Info: The max number of VTY users is 10, and the number
+      of current VTY users on line is 1.
+      The current login time is 2020-06-15 01:01:55+00:00.
+<FW1234>dis cu
+2020-06-15 01:01:55.860 
+!Software Version V500R005C00SPC200
+#
+sysname FW1234
+#
+ l2tp domain suffix-separator @
+#
+authentication-profile name portal_authen_default
+#
+ ipsec sha2 compatible enable
+#
+ undo factory-configuration prohibit
+#
+undo telnet ipv6 server enable
+#
+clock timezone UTC add 00:00:00
+#
+ update schedule location-sdb weekly Sun 06:47
+#
+ firewall defend action discard
+#
+ log type traffic enable
+ log type syslog enable
+ log type policy enable
+#
+  ---- More ----
+ undo dataflow enable                     
+  ---- More ----
+#                                         
+  ---- More ----
+ undo sa force-detection enable           
+  ---- More ----
+#                                         
+  ---- More ----
+ lldp enable                              
+  ---- More ----
+#                                         
+  ---- More ----
+ isp name "china mobile" set filename china-mobile.csv
+  ---- More ----
+ isp name "china unicom" set filename china-unicom.csv
+  ---- More ----
+ isp name "china telecom" set filename china-telecom.csv
+
+ isp name "china educationnet" set filename china-educationnet.csv
+  ---- More ----
+#                                         
+  ---- More ----
+ banner enable                            
+  ---- More ----
+#                                         
+  ---- More ----
+                                          
+ user-manage web-authentication security port 8887
+page-setting                              
+  ---- More ----
+ user-manage security version tlsv1.1 tlsv1.2
+  ---- More ----
+password-policy                           
+  ---- More ----
+ level high                               
+  ---- More ----
+                                          
+user-manage single-sign-on ad
+user-manage single-sign-on tsm            
+  ---- More ----
+user-manage single-sign-on radius         
+  ---- More ----
+user-manage auto-sync online-user         
+  ---- More ----
+#                                         
+  ---- More ----
+ firewall ids authentication type aes256  
+  ---- More ----
+#                                         
+  ---- More ----
+ web-manager security version tlsv1.1 tlsv1.2
+  ---- More ----
+ web-manager enable                       
+  ---- More ----
+ web-manager security enable              
+
+ web-manager timeout 1440                 
+  ---- More ----
+ undo web-manager config-guide enable     
+  ---- More ----
+#                                         
+  ---- More ----
+firewall dataplane to manageplane application-apperceive default-action drop
+  ---- More ----
+#                                         
+
+dns resolve                               
+  ---- More ----
+dns server 114.114.114.114                
+  ---- More ----
+dns server 114.80.169.59                  
+  ---- More ----
+dns server 140.207.215.73                 
+  ---- More ----
+#                                         
+
+dhcp enable                               
+  ---- More ----
+#                                         
+  ---- More ----
+ update schedule ips-sdb daily 07:59      
+  ---- More ----
+ update schedule av-sdb daily 07:59       
+  ---- More ----
+ update schedule sa-sdb daily 07:59       
+  ---- More ----
+ update schedule ip-reputation daily 07:59
+  ---- More ----
+ update schedule cnc daily 07:59          
+  ---- More ----
+ update schedule file-reputation daily 07:59
+  ---- More ----
+#                                         
+
+ set disk-scan parameter attach on        
+  ---- More ----
+ set disk-scan parameter cycle 15         
+  ---- More ----
+ set disk-scan parameter iostat 80        
+  ---- More ----
+ set disk-scan parameter speed 10         
+  ---- More ----
+ set disk-scan parameter switch on        
+
+ set disk-scan parameter parallel 50      
+  ---- More ----
+ disk-usage alarm threshold 95            
+  ---- More ----
+#                                         
+  ---- More ----
+ip vpn-instance default                   
+  ---- More ----
+                                          
+ ipv4-family
+#                                         
+  ---- More ----
+ time-range worktime                      
+  ---- More ----
+  period-range 08:00:00 to 18:00:00 working-day
+  ---- More ----
+#                                         
+
+acl number 3000                           
+  ---- More ----
+ rule 5 permit ip source 10.31.1.0 0.0.0.255 destination 192.168.80.0 0.0.0.255
+  ---- More ----
+ rule 10 permit ip source 10.31.1.0 0.0.0.255 destination 192.168.90.0 0.0.0.255
+  ---- More ----
+ rule 15 permit ip source 10.31.1.0 0.0.0.255 destination 192.168.0.0 0.0.255.255
+  ---- More ----
+#                                         
+  ---- More ----
+ipsec proposal prop85174927846            
+  ---- More ----
+ encapsulation-mode auto                  
+  ---- More ----
+ esp authentication-algorithm sha2-256    
+  ---- More ----
+ esp encryption-algorithm aes-256         
+
+#                                         
+  ---- More ----
+ike proposal default                      
+  ---- More ----
+ encryption-algorithm aes-256 aes-192 aes-128
+  ---- More ----
+ dh group14                               
+  ---- More ----
+ authentication-algorithm sha2-512 sha2-384 sha2-256
+
+ authentication-method pre-share          
+  ---- More ----
+ integrity-algorithm hmac-sha2-256        
+  ---- More ----
+ prf hmac-sha2-256                        
+  ---- More ----
+ike proposal 1                            
+  ---- More ----
+                                          
+ encryption-algorithm aes-256
+ dh group14                               
+  ---- More ----
+ authentication-algorithm sha2-256        
+  ---- More ----
+ authentication-method pre-share          
+  ---- More ----
+ integrity-algorithm hmac-sha2-256        
+  ---- More ----
+ prf hmac-sha2-256                        
+  ---- More ----
+#                                         
+  ---- More ----
+ike peer ike85174927846                   
+  ---- More ----
+ exchange-mode auto                       
+  ---- More ----
+ pre-shared-key %^%#:jfc~NAg3~=15TQ'lVuKM{ku~+Ysh&W\O3MR4NI/%^%#
+
+ ike-proposal 1                           
+  ---- More ----
+ remote-id-type none                      
+  ---- More ----
+ dpd type periodic                        
+  ---- More ----
+ remote-address 58.40.135.198             
+  ---- More ----
+                                          
+#
+ipsec policy ipsec8517492760 1 isakmp     
+  ---- More ----
+ security acl 3000                        
+  ---- More ----
+ ike-peer ike85174927846                  
+  ---- More ----
+ proposal prop85174927846                 
+  ---- More ----
+ tunnel local applied-interface           
+  ---- More ----
+ alias 123                                
+  ---- More ----
+ sa trigger-mode auto                     
+  ---- More ----
+ sa duration traffic-based 5242880        
+  ---- More ----
+ sa duration time-based 3600              
+  ---- More ----
+#                                         
+  ---- More ----
+web-auth-server default                   
+  ---- More ----
+ port 50100                               
+  ---- More ----
+#                                         
+  ---- More ----
+portal-access-profile name default        
+
+#                                         
+  ---- More ----
+aaa                                       
+  ---- More ----
+ authentication-scheme default            
+  ---- More ----
+ authentication-scheme admin_local        
+  ---- More ----
+                                          
+ authentication-scheme admin_radius_local
+ authentication-scheme admin_hwtacacs_local
+  ---- More ----
+ authentication-scheme admin_ad_local     
+  ---- More ----
+ authentication-scheme admin_ldap_local   
+  ---- More ----
+ authentication-scheme admin_radius       
+  ---- More ----
+ authentication-scheme admin_hwtacacs     
+
+ authentication-scheme admin_ad           
+  ---- More ----
+ authentication-scheme admin_ldap         
+  ---- More ----
+ authorization-scheme default             
+  ---- More ----
+ accounting-scheme default                
+  ---- More ----
+ domain default                           
+  ---- More ----
+  service-type internetaccess ssl-vpn l2tp ike
+  ---- More ----
+  internet-access mode password           
+  ---- More ----
+  reference user current-domain           
+  ---- More ----
+ manager-user audit-admin                 
+
+  ---- More ----
+  password cipher @%@%9lwoIZ(]*.L80vRN!7aI;-T{2n&G<Y=NDC^C[uIwV3~'-T!;@%@%
+  service-type web terminal               
+  ---- More ----
+  level 15                                
+  ---- More ----
+                                          
+  ---- More ----
+ manager-user api-admin                   
+  ---- More ----
+  password cipher @%@%arz6Zx>}&5#FVkSY.^:9qTed.9w\!j|'cGTd(oUy$TbKTegq@%@%
+  ---- More ----
+  service-type api                        
+  ---- More ----
+  level 15                                
+  ---- More ----
+                                          
+  ---- More ----
+ manager-user admin                       
+  ---- More ----
+                                          
+  password cipher @%@%}E8!SGx@`@;7}v5:ZN~Lr*:t>q3"1$}R:A~Od"W^wxFF*:wr@%@%
+  service-type web terminal telnet ssh    
+  ---- More ----
+  level 15                                
+  ---- More ----
+                                          
+  ---- More ----
+ role system-admin                        
+  ---- More ----
+ role device-admin                        
+
+ role device-admin(monitor)               
+  ---- More ----
+ role audit-admin                         
+  ---- More ----
+ bind manager-user audit-admin role audit-admin
+  ---- More ----
+ bind manager-user admin role system-admin
+  ---- More ----
+                                          
+#
+l2tp-group default-lns                    
+  ---- More ----
+#                                         
+  ---- More ----
+interface GigabitEthernet0/0/0            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+ ip binding vpn-instance default          
+  ---- More ----
+ ip address 192.168.0.1 255.255.255.0     
+  ---- More ----
+ service-manage http permit               
+  ---- More ----
+ service-manage https permit              
+  ---- More ----
+ service-manage ping permit               
+
+#                                         
+  ---- More ----
+interface GigabitEthernet1/0/0            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+#                                         
+  ---- More ----
+interface GigabitEthernet1/0/1            
+
+ undo shutdown                            
+  ---- More ----
+#                                         
+  ---- More ----
+interface GigabitEthernet1/0/2            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+#                                         
+
+interface GigabitEthernet1/0/3            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+ ip address 10.31.1.3 255.255.255.0       
+  ---- More ----
+ service-manage http permit               
+  ---- More ----
+ service-manage https permit              
+
+ service-manage ping permit               
+  ---- More ----
+ service-manage ssh permit                
+  ---- More ----
+ service-manage snmp permit               
+  ---- More ----
+ service-manage telnet permit             
+  ---- More ----
+ service-manage netconf permit            
+  ---- More ----
+#                                         
+  ---- More ----
+interface GigabitEthernet1/0/4            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+ ip address 192.168.90.158 255.255.255.0  
+  ---- More ----
+ service-manage http permit               
+  ---- More ----
+ service-manage https permit              
+  ---- More ----
+ service-manage ping permit               
+  ---- More ----
+ service-manage ssh permit                
+  ---- More ----
+ service-manage snmp permit               
+  ---- More ----
+ service-manage telnet permit             
+  ---- More ----
+                                          
+ service-manage netconf permit
+#                                         
+  ---- More ----
+interface GigabitEthernet1/0/5            
+  ---- More ----
+ undo shutdown                            
+  ---- More ----
+#                                         
+  ---- More ----
+                                          
+interface Virtual-if0
+#                                         
+  ---- More ----
+interface Cellular0/0/0                   
+  ---- More ----
+#                                         
+  ---- More ----
+interface NULL0                           
+
+#                                         
+  ---- More ----
+firewall zone local                       
+  ---- More ----
+ set priority 100                         
+  ---- More ----
+#                                         
+  ---- More ----
+                                          
+firewall zone trust
+ set priority 85                          
+  ---- More ----
+ add interface GigabitEthernet0/0/0       
+  ---- More ----
+ add interface GigabitEthernet1/0/4       
+  ---- More ----
+#                                         
+  ---- More ----
+firewall zone untrust                     
+  ---- More ----
+ set priority 5                           
+  ---- More ----
+ add interface GigabitEthernet1/0/3       
+  ---- More ----
+#                                         
+  ---- More ----
+firewall zone dmz                         
+
+ set priority 50                          
+  ---- More ----
+#                                         
+  ---- More ----
+api                                       
+  ---- More ----
+#                                         
+
+ip route-static 192.168.60.0 255.255.255.0 192.168.90.1
+  ---- More ----
+ip route-static 192.168.80.0 255.255.255.0 192.168.90.1
+  ---- More ----
+                                          
+
+#
+
+
+
+
+
+snmp-agent                                
+snmp-agent local-engineid 800007DB03346AC2E325EE
+
+snmp-agent community read cipher %^%#":Qm3OQ#&#Saxx1I/(i:Zn']48{^AZ\UU+YW`@SKxC"U<B@wU*mp=/G2!'aIDLP'M>0-D=!s6cA{8''8%^%#
+snmp-agent sys-info version v2c v3        
+                                          
+
+snmp-agent target-host trap address udp-domain 192.168.80.111 params securityname cipher %^%#ZH<,SJ8W/9p1ZJCs9S'"R`l51^ys_PS4-<9=d:]M%^%# v2c
+snmp-agent mib-view included iso iso      
+snmp-agent trap source GigabitEthernet1/0/3
+snmp-agent trap enable                    
+  ---- More ----
+#                                         
+                                          
+
+
+
+
+
+
+undo ssh server compatible-ssh1x enable
+stelnet server enable                     
+ssh authentication-type default password  
+ssh user admin                            
+
+ssh user admin authentication-type password
+                                          
+
+
+
+
+
+
+ssh user admin service-type stelnet
+ssh client first-time enable              
+#                                         
+
+firewall detect ftp                       
+#                                         
+
+
+
+
+
+
+
+user-interface con 0                      
+ authentication-mode aaa                  
+
+user-interface vty 0 4                    
+ authentication-mode aaa                  
+user-interface vty 16 20                  
+
+
+#                                         
+pki realm default                         
+#                                         
+
+sa                                        
+  ---- More ----
+
+
+
+
+
+
+#                                         
+location                                  
+#                                         
+                                          
+multi-interface
+ mode proportion-of-weight                
+
+
+
+
+
+
+
+#                                         
+right-manager server-group                
+#                                         
+                                          
+agile-network
+#                                         
+
+                                          
+device-classification
+ device-group pc                          
+ device-group mobile-terminal             
+ device-group undefined-group             
+  ---- More ----
+#                                         
+
+
+
+
+
+user-manage server-sync tsm               
+#                                         
+security-policy                           
+ rule name any                            
+  policy logging                          
+  action permit                           
+ rule name 123                            
+  source-zone trust                       
+  destination-zone untrust                
+  ---- More ----
+
+
+
+
+
+
+
+
+
+
+
+  source-address 123.123.0.0 mask 255.255.0.0
+                                          
+  destination-address 145.154.0.0 mask 255.255.0.0
+  action permit                           
+ rule name 234                            
+  source-zone trust                       
+  ---- More ----
+
+
+
+
+
+
+  destination-zone dmz                    
+  ---- More ----
+  source-address 123.123.0.0 mask 255.255.0.0
+  destination-address 31.13.0.0 mask 255.255.0.0
+  action permit                           
+ rule name 345                            
+  ---- More ----
+
+  source-zone trust                       
+  destination-zone dmz                    
+  source-address 123.123.0.0 mask 255.255.0.0
+
+  destination-address 145.154.0.0 mask 255.255.0.0
+  action permit                           
+  ---- More ----
+ rule name 456                            
+
+  source-zone trust                       
+  destination-zone dmz                    
+  source-address 123.123.0.0 mask 255.255.0.0
+  destination-address 31.13.0.0 mask 255.255.0.0
+
+  ---- More ----
+
+
+
+
+
+
+  action permit                           
+ rule name 567                            
+  source-zone trust                       
+  destination-zone dmz                    
+  ---- More ----
+  source-address 123.123.0.0 mask 255.255.0.0
+  ---- More ----
+  destination-address 145.154.0.0 mask 255.255.0.0
+  action permit                           
+
+ rule name 678                            
+  source-zone trust                       
+  destination-zone dmz                    
+  ---- More ----
+
+
+
+
+
+
+  source-address 123.123.0.0 mask 255.255.0.0
+
+  destination-address 31.13.0.0 mask 255.255.0.0
+  action permit                           
+ rule name 789                            
+                                          
+  source-zone trust
+  ---- More ----
+
+
+
+
+
+
+  destination-zone dmz                    
+  source-address 123.123.0.0 mask 255.255.0.0
+  destination-address 145.154.0.0 mask 255.255.0.0
+  ---- More ----
+  action permit                           
+#                                         
+  ---- More ----
+
+
+auth-policy                               
+#                                         
+                                          
+traffic-policy
+#                                         
+policy-based-route                        
+
+
+#                                         
+nat-policy                                
+ rule name no-nat                         
+
+  source-zone trust                       
+  destination-zone untrust                
+
+  source-address 10.31.1.0 mask 255.255.255.0
+
+  destination-address 192.168.80.0 mask 255.255.255.0
+  destination-address 192.168.90.0 mask 255.255.255.0
+  action no-nat                           
+ rule name out                            
+
+
+  source-zone trust                       
+  destination-zone untrust                
+                                          
+  action source-nat easy-ip
+#                                         
+proxy-policy                              
+
+
+
+
+
+
+
+#                                         
+quota-policy                              
+#                                         
+pcp-policy                                
+#                                         
+dns-transparent-policy                    
+ mode based-on-multi-interface            
+#                                         
+rightm-policy                             
+#                                         
+mac-access-profile name mac_access_profile
+#                                         
+ sms                                      
+#                                         
+
+return                                    
+<FW1234>packet_write_wait: Connection to 192.168.90.158 port 22: Broken pipe

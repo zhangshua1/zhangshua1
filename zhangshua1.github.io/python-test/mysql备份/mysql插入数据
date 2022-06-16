@@ -1,0 +1,5 @@
+#！/usr/bin/python3
+#_*_ coding:utf-8_*_
+import random
+
+sql_file = open('')
