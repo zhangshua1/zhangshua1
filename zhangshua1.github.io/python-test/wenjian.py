@@ -33,6 +33,20 @@ for i in range(50):
 	sys.stdout.flush()
 	time.sleep(0.1)
 '''
-import os
-f = os.system(command)
-print(f)
+# import os
+# f = os.system(command)
+# print(f)
+
+if __name__=="__main__":
+	i=0
+	k=0
+	for i in range(10):
+		j=0
+		for j in range(10):
+			if j != i:
+				k = 1000 * i + 100 * i + 10 * j + j
+				for temp in range(31,100):
+					if temp * temp == k:
+						print(k)
+
+
